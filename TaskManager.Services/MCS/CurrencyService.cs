@@ -6,12 +6,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TaskManager.DB.Repository.MCSDB_Local.CurrencyF;
+using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Model.DTO;
 using TaskManager.Model.POCO;
 
 namespace TaskManager.Services.MCS
 {
-    public class CurrencyService
+    public class CurrencyService : ICurrencyService
     {
         private static readonly string _url = "http://www.cbr.ru/scripts/XML_daily.asp";
 
@@ -25,40 +27,45 @@ namespace TaskManager.Services.MCS
             "USD"
         };
 
+        private DateRange dateRange;
         private readonly DateTime _defaultLeftInterval = DateTime.Now.AddDays(-7);
         private readonly DateTime _defaultRightInterval = DateTime.Now;
 
-        private readonly DateRange dateRange;
+     
+        private readonly ICurrencyRepository _currencyRepository;
+        private readonly IWeekMstRepository _weekMstRepository;
 
-        public CurrencyService(DateRange customRange)
+
+        public CurrencyService(ICurrencyRepository currencyRepository, IWeekMstRepository weekMstRepository)
         {
-            dateRange = customRange;
+            _currencyRepository = currencyRepository;
+            _weekMstRepository = weekMstRepository;
         }
 
-        public CurrencyService()
-        {
-            dateRange = new DateRange(_defaultLeftInterval, _defaultRightInterval);
-        }
-
+ 
    
-        public void UpdateCurrencyInfo()
+   
+        public void UpdateCurrencyInfo(DateRange customRange = null)
         {
             Func<DateTime, string> toYMD = (d) => d.ToString("yyyyMMdd", CultureInfo.GetCultureInfo("ru-RU"));
 
-            DateRange currencyDate = null;
+            dateRange = customRange ?? new DateRange(_defaultLeftInterval, _defaultRightInterval);
 
             List<CurrencyInfo> resultCurrencyInformation = new List<CurrencyInfo>();
 
-            for (DateTime i = currencyDate.LeftInterval; i <= currencyDate.RightInterval; i = i.AddDays(1))
+            for (DateTime i = dateRange.LeftInterval; i <= dateRange.RightInterval; i = i.AddDays(1))
             {
                 string current_YMD = toYMD(i);
-                string week = String.Empty;
 
-                if (i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday)
+                var existsCurrency = _currencyRepository.GetByYMD(current_YMD);
+
+                if ((existsCurrency != null && existsCurrency.Any()) ||
+                    i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday)
                 {
                     continue;
                 }
 
+                string week = _weekMstRepository.GetByYMD(current_YMD).First().BASE_YW;
                 string rawResult =
                 new WebClient().DownloadString(
                         string.Format($"{_url}?date_req={i.ToString("dd/MM/yyyy", CultureInfo.GetCultureInfo("ru-RU"))}")
@@ -110,7 +117,10 @@ namespace TaskManager.Services.MCS
 
             }
 
-            //TODO: implement updates in Database
+            foreach (var v in resultCurrencyInformation)
+            {
+                _currencyRepository.Insert(v);
+            }
 
         }
     }

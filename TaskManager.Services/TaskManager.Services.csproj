@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MCS\CurrencyService.cs" />
+    <Compile Include="MCS\ICurrencyService.cs" />
     <Compile Include="MCS\WorkingDaysService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

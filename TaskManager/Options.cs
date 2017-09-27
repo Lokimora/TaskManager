@@ -13,10 +13,10 @@ namespace TaskManager
     {
         #region
 
-        [Option("Task1", HelpText = "Tasks that calculates working days includeing weekends and holiday",
+        [Option("CurrencyTask", HelpText = "Tasks that calculates working days includeing weekends and holiday",
             Required = false)]
-        [TaskMap(typeof(CurrencyInformer))]
-        public bool WorkingDays { get; set; }
+        [TaskMap(typeof(CurrencyInformerTask))]
+        public bool CurrencyTask { get; set; }
 
         [Option("Task2", HelpText = "test")]
         [TaskMap(typeof(TaskSecond))]

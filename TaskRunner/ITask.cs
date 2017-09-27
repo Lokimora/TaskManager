@@ -9,5 +9,6 @@ namespace TaskRunner
     public interface ITask
     {
         void Run(object option);
+        
     }
 }

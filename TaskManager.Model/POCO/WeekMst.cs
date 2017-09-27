@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Model.POCO
 {
-    [Table("Week_Mst", Schema = "Ru")]
-    class WeekMst
+   
+    public class WeekMst
     {
-        [Key]
         public int Id { get; set; }
         public string BASE_YMD { get; set; }
         public string BASE_YW { get; set; }

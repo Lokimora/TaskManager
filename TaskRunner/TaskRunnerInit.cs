@@ -4,18 +4,20 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleInjector;
 
 namespace TaskRunner
 {
     public class TaskRunnerInit
     {
         private object _options;
-        
+        private readonly Container _container;
 
 
-        public TaskRunnerInit(object options)
+        public TaskRunnerInit(object options, Container container)
         {
             _options = options;
+            _container = container;
         }
 
         public void Start()
@@ -24,21 +26,29 @@ namespace TaskRunner
                 _options.GetType()
                     .GetProperties()
                     .Where(p => p.PropertyType == typeof(Boolean) &&
-                        p.GetCustomAttributes<TaskMapAttribute>().Any()).ToArray();
+                                (Boolean)p.GetValue(_options) == true &&
+                                p.GetCustomAttributes<TaskMapAttribute>().Any()).ToArray();
 
             List<Task> tasks = new List<Task>();
 
             foreach (var v in commands)
             {
+               
                 TaskMapAttribute taskAttr = v.GetCustomAttribute<TaskMapAttribute>();
 
                 var taskType = taskAttr?.GetTaskType();
                 if (taskType != null)
                 {
+                    var ctor = taskType.GetConstructors()[0];
+                    object[] parameters = new object[ctor.GetParameters().Length];
+                    foreach (var p in ctor)
+                    {
+                        _container.GetInstance<p>()
+                    }
 
                     Task t = Task.Factory.StartNew(() =>
                     {
-                        var taskInst = Activator.CreateInstance(taskType) as ITask;
+                        var taskInst = Activator.CreateInstance(taskType,) as ITask;
                         taskInst?.Run(_options);
 
                     });

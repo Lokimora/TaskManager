@@ -37,7 +37,12 @@
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.11.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.11\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.DB\TaskManager.DB.csproj">
+      <Project>{5fbc6d4e-b8c4-4f26-bb36-7ba93f77bd3a}</Project>
+      <Name>TaskManager.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Model\TaskManager.Model.csproj">
       <Project>{28b5b8f0-04f5-4eac-a073-a63d866a82bb}</Project>
       <Name>TaskManager.Model</Name>

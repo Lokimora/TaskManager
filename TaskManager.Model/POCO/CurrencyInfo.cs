@@ -8,11 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManager.Model.POCO
 {
-    [Table("CurrencyRates", Schema = "Ru")]
     public class CurrencyInfo
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public int Id { get; set; }
         public string Source { get; set; }
         public string Destination { get; set; }

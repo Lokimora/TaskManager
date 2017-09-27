@@ -10,15 +10,15 @@ namespace TaskManager.DB.Context
 {
     public abstract class SqlBaseConnection
     {
-        private IDbConnection _db;
+        internal IDbConnection DB;
 
         protected SqlBaseConnection(string connectionString)
         {
-            _db = new SqlConnection(connectionString);
-
-            //_db.Execute            
+            DB = new SqlConnection(connectionString);
+         
         }
 
+        
         
     }
 }
