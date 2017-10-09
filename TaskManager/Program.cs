@@ -22,12 +22,12 @@ namespace TaskManager
             if (args.Length > 0)
             {
                 ContainerFactory.RegisterContainer();
-
+              
                 bool isValid = Parser.Default.ParseArguments(args, options);
 
                 if (isValid)
                 {
-                    TaskRunnerInit init = new TaskRunnerInit(options);
+                    TaskRunnerInit init = new TaskRunnerInit(options, ContainerFactory.GetContainer());
                     init.Start();
                 }
             }
