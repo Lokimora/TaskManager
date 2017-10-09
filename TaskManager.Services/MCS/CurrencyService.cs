@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -47,6 +48,8 @@ namespace TaskManager.Services.MCS
    
         public void UpdateCurrencyInfo(DateRange customRange = null)
         {
+            Console.WriteLine("UPdateCurrencyInfo Started");
+
             Func<DateTime, string> toYMD = (d) => d.ToString("yyyyMMdd", CultureInfo.GetCultureInfo("ru-RU"));
 
             dateRange = customRange ?? new DateRange(_defaultLeftInterval, _defaultRightInterval);

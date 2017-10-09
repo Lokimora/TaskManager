@@ -40,17 +40,19 @@ namespace TaskRunner
                 if (taskType != null)
                 {
                     var ctor = taskType.GetConstructors()[0];
-                    List<object> constructorParams = new List<object>();
-                    foreach (var param in ctor.GetParameters())
+                    
+                    var parameters = ctor.GetParameters();
+                    object[] constructorParams = new object[parameters.Length];
+                    for (int i = 0; i < parameters.Length; i++)
                     {
-                       var ctorParam = _container.GetInstance(param.ParameterType);
-                        constructorParams.Add(ctorParam);
+                        var ctorParam = _container.GetInstance(parameters[i].ParameterType);
+                        constructorParams[i] = ctorParam;
                     }
 
 
                     Task t = Task.Factory.StartNew(() =>
                     {
-                        var taskInst = Activator.CreateInstance(taskType, BindingFlags.CreateInstance | BindingFlags.ExactBinding, constructorParams) as ITask;
+                        var taskInst = Activator.CreateInstance(taskType, constructorParams) as ITask;
                         taskInst?.Run(_options);
 
                     });
