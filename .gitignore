@@ -4,3 +4,4 @@
 TaskManager.Model/bin/*
 .vs/*
 /.nuget
+/packages
