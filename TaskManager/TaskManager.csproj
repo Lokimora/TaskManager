@@ -56,7 +56,7 @@
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\CurrencyInformer.cs" />
+    <Compile Include="Tasks\CurrencyInformerTask.cs" />
     <Compile Include="Tasks\TaskSecond.cs" />
   </ItemGroup>
   <ItemGroup>

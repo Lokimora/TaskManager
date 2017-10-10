@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CalendObject.cs" />
     <Compile Include="DTO\CurrencyResponse.cs" />
     <Compile Include="DTO\DateRange.cs" />
+    <Compile Include="Enums\DayType.cs" />
     <Compile Include="POCO\CurrencyInfo.cs" />
     <Compile Include="POCO\WeekMst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

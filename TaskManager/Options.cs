@@ -29,7 +29,7 @@ namespace TaskManager
 
         [Option("WorkingDaysYear", DefaultValue = 2017,
             HelpText = "Sets year that will be proceed for wokring days task")]
-        public int WokringDaysYear { get; set; }
+        public int WorkingDaysYear { get; set; }
 
         #endregion
     }

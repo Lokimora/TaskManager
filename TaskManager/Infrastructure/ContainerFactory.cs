@@ -9,15 +9,14 @@ using TaskManager.DB.Context;
 using TaskManager.DB.Repository.MCSDB_Local.CurrencyF;
 using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Services.MCS;
+using TaskManager.Services.MCS.Currencies;
 
 namespace TaskManager.Infrastructure
 {
     public static class ContainerFactory
     {
         private static Container _container;
-
-       
-
+    
         public static void RegisterContainer()
         {
             string mcsdbLocalConnection = ConfigurationManager.ConnectionStrings["MCSDB_LOCAL_DB"].ConnectionString;

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Update\UpdateWorkingDayCommand.cs" />
     <Compile Include="Context\BonusConnection.cs" />
     <Compile Include="Context\IConnection.cs" />
     <Compile Include="Context\McsdbLocalConnection.cs" />

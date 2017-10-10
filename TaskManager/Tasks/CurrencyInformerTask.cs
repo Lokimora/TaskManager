@@ -11,6 +11,7 @@ using SimpleInjector;
 using TaskManager.Model.DTO;
 using TaskManager.Model.POCO;
 using TaskManager.Services.MCS;
+using TaskManager.Services.MCS.Currencies;
 using TaskRunner;
 
 namespace TaskManager.Tasks

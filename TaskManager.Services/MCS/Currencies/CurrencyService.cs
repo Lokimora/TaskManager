@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using TaskManager.DB.Repository.MCSDB_Local.CurrencyF;
 using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Model.DTO;
 using TaskManager.Model.POCO;
 
-namespace TaskManager.Services.MCS
+namespace TaskManager.Services.MCS.Currencies
 {
     public class CurrencyService : ICurrencyService
     {

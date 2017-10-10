@@ -7,7 +7,7 @@ using TaskRunner;
 
 namespace TaskManager.Tasks
 {
-    public class TaskSecond : ITask
+    public class WorkingDaysTask : ITask
     {
         public void Run(object option)
         {

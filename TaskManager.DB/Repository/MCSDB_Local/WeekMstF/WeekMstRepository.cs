@@ -17,8 +17,14 @@ namespace TaskManager.DB.Repository.MCSDB_Local.WeekMstF
 
         public IEnumerable<WeekMst> GetByYMD(string ymd)
         {
-            return _mcsdbLocal.DB.Query<WeekMst>("SELECT Id, BASE_YMD, BASE_YW FROM dbo.WeekMst WHERE SURVEY_YMD = @ymd",
+            return _mcsdbLocal.DB.Query<WeekMst>("SELECT Id, BASE_YMD, BASE_YW FROM RU.Week_Mst WHERE BASE_YMD = @ymd",
                 new {ymd});
+        }
+
+        public IEnumerable<WeekMst> GetByYear(string year)
+        {
+            return _mcsdbLocal.DB.Query<WeekMst>("SELECT Id, BASE_YMD, BASE_YW, BASE_YY FROM RU.Week_Mst WHERE BASE_YY = @year",
+                new { year });
         }
     }
 }

@@ -14,5 +14,6 @@ namespace TaskManager.Model.POCO
         public int Id { get; set; }
         public string BASE_YMD { get; set; }
         public string BASE_YW { get; set; }
+        public string BASE_YY { get; set; }
     }
 }
