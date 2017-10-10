@@ -18,8 +18,8 @@ namespace TaskManager
         [TaskMap(typeof(CurrencyInformerTask))]
         public bool CurrencyTask { get; set; }
 
-        [Option("Task2", HelpText = "test")]
-        [TaskMap(typeof(TaskSecond))]
+        [Option("WorkingDaysTask", HelpText = "test")]
+        [TaskMap(typeof(WorkingDaysTask))]
         public bool TaskTwo { get; set; }
 
         #endregion

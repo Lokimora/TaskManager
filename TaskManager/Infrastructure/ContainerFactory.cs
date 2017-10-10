@@ -10,6 +10,7 @@ using TaskManager.DB.Repository.MCSDB_Local.CurrencyF;
 using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Services.MCS;
 using TaskManager.Services.MCS.Currencies;
+using TaskManager.Services.MCS.Weeks;
 
 namespace TaskManager.Infrastructure
 {
@@ -32,6 +33,7 @@ namespace TaskManager.Infrastructure
             _container.Register<CurrencyService>(() => new CurrencyService(
                 _container.GetInstance<ICurrencyRepository>(),
                 _container.GetInstance<IWeekMstRepository>()));
+            _container.Register<IWeekService, WeekService>();
 
             _container.Verify();
 

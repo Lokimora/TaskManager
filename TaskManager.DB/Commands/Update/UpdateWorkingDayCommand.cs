@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 namespace TaskManager.DB.Commands.Update
 {
     public class UpdateWorkingDayCommand : ICommand
-    {        
-        /// <summary>
-        /// update week_mst
-        /// </summary>
-        /// <param name="id">id of entity</param>
-        /// <param name="base_wd">working day number</param>
-        /// <returns></returns>
-        public string GetSqlCommand(int id, int base_wd)
+    {       
+        public string GetSqlCommand()
         {
-            return _command;
+            return "UPDATE RU.Week_Mst SET BASE_WD = @base_wd WHERE Id = @id";
         }
     }
 }

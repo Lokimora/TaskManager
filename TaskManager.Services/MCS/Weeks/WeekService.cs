@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.DB.Commands.Update;
 using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Model.Enums;
 using TaskManager.Model.POCO;
@@ -62,7 +63,7 @@ namespace TaskManager.Services.MCS.Weeks
                     }
 
                     v.BASE_WD = workingDayCounter;
-                    dbConnection.Update(v);
+                    _weekMstRepository.Update(new UpdateWorkingDayCommand(), v.Id, v.BASE_WD);
                     workingDayCounter++;
                 }
                 else if ((date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday) &&
@@ -79,19 +80,18 @@ namespace TaskManager.Services.MCS.Weeks
                     }
 
                     v.BASE_WD = workingDayCounter;
-                    dbConnection.Update(v);
+                    _weekMstRepository.Update(new UpdateWorkingDayCommand(), v.Id, v.BASE_WD);
                     workingDayCounter++;
                 }
                 else
                 {
                     v.BASE_WD = -1;
-                    dbConnection.Update(v);
+                    _weekMstRepository.Update(new UpdateWorkingDayCommand(), v.Id, v.BASE_WD);
                 }
 
 
             }
 
-            dbConnection.Close();
         }
 
     }
