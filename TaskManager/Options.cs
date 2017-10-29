@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 using TaskManager.Tasks;
+using TaskManager.Tasks.Bonus;
 using TaskRunner;
 
 namespace TaskManager
@@ -20,7 +21,11 @@ namespace TaskManager
 
         [Option("WorkingDaysTask", HelpText = "test")]
         [TaskMap(typeof(WorkingDaysTask))]
-        public bool TaskTwo { get; set; }
+        public bool WorkingDaysTask { get; set; }
+
+        [Option("UpdatePoliciesTask", HelpText = "Update policies that have stage 5 and last update stage more then 30 days")]
+        [TaskMap(typeof(UpdatePoliciesTask))]
+        public bool UpdatePoliceiesWithStage5 { get; set; }
 
         #endregion
 

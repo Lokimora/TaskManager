@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleInjector;
 using TaskManager.DB.Context;
+using TaskManager.DB.Repository.Bonus;
+using TaskManager.DB.Repository.Bonus.PolicyData;
 using TaskManager.DB.Repository.MCSDB_Local.CurrencyF;
 using TaskManager.DB.Repository.MCSDB_Local.WeekMstF;
 using TaskManager.Services.MCS;
@@ -30,10 +32,12 @@ namespace TaskManager.Infrastructure
             _container.Register<BonusConnection>(() => new BonusConnection(bonusConnection));
             _container.Register<ICurrencyRepository, CurrencyRepository>(Lifestyle.Transient);
             _container.Register<IWeekMstRepository, WeekMstRepository>(Lifestyle.Transient);
+            _container.Register<IPolicyRepository, PolicyRepository>();
             _container.Register<CurrencyService>(() => new CurrencyService(
                 _container.GetInstance<ICurrencyRepository>(),
                 _container.GetInstance<IWeekMstRepository>()));
             _container.Register<IWeekService, WeekService>();
+            
 
             _container.Verify();
 

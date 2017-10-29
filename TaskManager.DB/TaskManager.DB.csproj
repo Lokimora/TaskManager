@@ -50,6 +50,10 @@
     <Compile Include="Context\IConnection.cs" />
     <Compile Include="Context\McsdbLocalConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Bonus\PaymentClaimData\IPaymentClaimRepository.cs" />
+    <Compile Include="Repository\Bonus\PaymentClaimData\PaymentClaimRepository.cs" />
+    <Compile Include="Repository\Bonus\PolicyData\IPolicyRepository.cs" />
+    <Compile Include="Repository\Bonus\PolicyData\PolicyRepository.cs" />
     <Compile Include="Repository\MCSDB_Local\CurrencyF\CurrencyRepository.cs" />
     <Compile Include="Repository\MCSDB_Local\CurrencyF\ICurrencyRepository.cs" />
     <Compile Include="Repository\MCSDB_Local\WeekMstF\IWeekMstRepository.cs" />
@@ -58,9 +62,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\Bonus\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Model\TaskManager.Model.csproj">
       <Project>{28B5B8F0-04F5-4EAC-A073-A63D866A82BB}</Project>
